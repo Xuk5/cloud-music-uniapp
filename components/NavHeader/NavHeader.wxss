@@ -1,0 +1,24 @@
+.header{
+    display: flex;
+    flex-direction: column;
+}
+.header button{
+    width: 150rpx;
+    height: 50rpx;
+    display: inline-block;
+    font-size: 25rpx;
+    line-height: 50rpx;
+    padding: 0;
+    margin: 0;
+}
+.header>text:first-of-type{
+    font-size:28rpx;
+    color: silver;
+}
+.myRecom{
+    height: 50rpx;
+    line-height: 50rpx;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15rpx;
+}

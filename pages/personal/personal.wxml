@@ -1,0 +1,62 @@
+<view class="personalContainer">
+    <view class="personalSection">
+        <view class="userInfo">
+            <image src="../../static/images/photo.jpg"></image>
+            <text>游客</text>
+        </view>
+        <view class="vipOpen">
+            <!--                <image src="/static/images/personal/vip-card-bg.png"></image>-->
+            <view>
+                <view>
+                    <text class="iconfont icon-huiyuan-"></text>
+                    <text>云音乐会员</text>
+                </view>
+                <button class="open">立即开通</button>
+            </view>
+            <view class="vipInfo">
+                <view>CloudMusicVIP</view>
+                <view>开通会员，纵享音乐</view>
+            </view>
+        </view>
+    </view>
+    <view class="cover-container">
+        <image src="/static/images/personal/arc.png" class="divisionLine"></image>
+        <view class="personal-selection">
+            <view class="">
+                <view class="iconfont icon-xiaoxi"></view>
+                <text>我的消息</text>
+            </view>
+            <view>
+                <view class="iconfont icon-myRecommender"></view>
+                <text>我的好友</text>
+            </view>
+            <view>
+                <view class="iconfont icon-gerenzhuye"></view>
+                <text>个人主页</text>
+            </view>
+            <view>
+                <view class="iconfont icon-gexingzhuangban"></view>
+                <text>个性装扮</text>
+            </view>
+        </view>
+    </view>
+    <view class="other-selection">
+        <view>最近播放</view>
+        <view>
+            <text>我的音乐</text>
+            <text> > </text>
+        </view>
+        <view>
+            <text>我的收藏</text>
+            <text> > </text>
+        </view>
+        <view>
+            <text>我的电台</text>
+            <text> > </text>
+        </view>
+
+    </view>
+</view>
+
+
+

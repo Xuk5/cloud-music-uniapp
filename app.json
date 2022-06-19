@@ -1,15 +1,39 @@
 {
   "pages": [
+    "pages/personal/personal",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/video/video"
+
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#00bfff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "一起云音乐"
   },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "tabBar": {
+    "color": "0C0C0CFF",
+    "selectedColor": "#d43c33",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "/static/images/tabs/tab-home.png",
+        "selectedIconPath": "/static/images/tabs/tab-home-current.png"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "text": "视频",
+        "iconPath": "/static/images/tabs/select.png",
+        "selectedIconPath": "/static/images/tabs/selected.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "个人中心",
+        "iconPath": "/static/images/tabs/tab-my.png",
+        "selectedIconPath": "/static/images/tabs/tab-my-current.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap64.json"
 }
