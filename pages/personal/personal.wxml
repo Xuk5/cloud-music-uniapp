@@ -1,7 +1,7 @@
 <view class="personalContainer">
     <view class="personalSection">
-        <view class="userInfo">
-            <image src="../../static/images/photo.jpg"></image>
+        <view class="userInfo" bindtap="login">
+            <image src="../../static/images/personal/missing-face.png"></image>
             <text>游客</text>
         </view>
         <view class="vipOpen">
@@ -19,7 +19,12 @@
             </view>
         </view>
     </view>
-    <view class="cover-container">
+    <view class="cover-container"
+          bindtouchstart="handleTouchStart"
+          bindtouchmove="bindTouchMove"
+          bindtouchend="bindTouchEnd"
+          style="transform:{{coverTransform}};transition:{{coverTransition}}"
+    >
         <image src="/static/images/personal/arc.png" class="divisionLine"></image>
         <view class="personal-selection">
             <view class="">
@@ -39,23 +44,23 @@
                 <text>个性装扮</text>
             </view>
         </view>
+        <view class="other-selection">
+            <view>最近播放</view>
+            <view>
+                <text>我的音乐</text>
+                <text> > </text>
+            </view>
+            <view>
+                <text>我的收藏</text>
+                <text> > </text>
+            </view>
+            <view>
+                <text>我的电台</text>
+                <text> > </text>
+            </view>
+        </view>
     </view>
-    <view class="other-selection">
-        <view>最近播放</view>
-        <view>
-            <text>我的音乐</text>
-            <text> > </text>
-        </view>
-        <view>
-            <text>我的收藏</text>
-            <text> > </text>
-        </view>
-        <view>
-            <text>我的电台</text>
-            <text> > </text>
-        </view>
 
-    </view>
 </view>
 
 
