@@ -1,11 +1,10 @@
 <view class="personalContainer">
-    <view class="personalSection">
+    <view class="personalSection" style="background-image:url({{userInfo.backgroundUrl?userInfo.backgroundUrl:'/static/images/personal/bglmg2.jpg'}})">
         <view class="userInfo" bindtap="login">
-            <image src="../../static/images/personal/missing-face.png"></image>
-            <text>游客</text>
+            <image src="{{userInfo.avatarUrl?userInfo.avatarUrl:'../../static/images/personal/missing-face.png'}}"></image>
+            <text>{{userInfo.nickname?userInfo.nickname:'游客'}}</text>
         </view>
         <view class="vipOpen">
-            <!--                <image src="/static/images/personal/vip-card-bg.png"></image>-->
             <view>
                 <view>
                     <text class="iconfont icon-huiyuan-"></text>
@@ -19,11 +18,12 @@
             </view>
         </view>
     </view>
-    <view class="cover-container"
+    <view class="{{recentPlayList.length===0?'cover-container':'cover-higher-container'}}"
           bindtouchstart="handleTouchStart"
           bindtouchmove="bindTouchMove"
           bindtouchend="bindTouchEnd"
           style="transform:{{coverTransform}};transition:{{coverTransition}}"
+
     >
         <image src="/static/images/personal/arc.png" class="divisionLine"></image>
         <view class="personal-selection">
@@ -45,7 +45,16 @@
             </view>
         </view>
         <view class="other-selection">
-            <view>最近播放</view>
+            <view class="recentPlayRecord">
+                <text>最近播放</text>
+                <scroll-view class="playRecordList" enable-flex scroll-x wx:if="{{recentPlayList.length}}">
+                    <view class="recentSong" wx:for="{{recentPlayList}}" wx:key="id">
+                        <image src="{{item.song.al.picUrl}}"></image>
+                        <text class="title">{{item.song.name}}</text>
+                    </view>
+                </scroll-view>
+                <view wx:else >暂无播放记录</view>
+            </view>
             <view>
                 <text>我的音乐</text>
                 <text> > </text>

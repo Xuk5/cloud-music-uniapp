@@ -46,13 +46,13 @@
     <!--    排行榜区域-->
     <view class="rankingArea">
         <NavHeader title="排行榜" nav="热歌风向标"></NavHeader>
-        <swiper class="ranking" next-margin="50rpx" bind:change="getRanking" circular>
-            <swiper-item class="rankingClass" wx:for="{{ranking}}" wx:key="id">
+        <swiper class="ranking" next-margin="50rpx"  circular>
+            <swiper-item class="rankingClass" wx:for="{{rankList}}" wx:key="id">
                 <view class="rankingName">{{item.name}}></view>
                 <view class="rankingSong" wx:for="{{item.tracks}}" wx:key="id" wx:for-item="song">
                     <image src="{{song.al.picUrl}}"></image>
                     <text>{{index+1}}</text>
-                    <text class="rankingSongName">{{song.name}}</text>
+                    <text class="rankingSongName">{{song.al.name}}</text>
                 </view>
 
             </swiper-item>

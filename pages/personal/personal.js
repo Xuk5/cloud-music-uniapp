@@ -1,3 +1,5 @@
+import request from "../../utils/request";
+
 let startY = 0
 let moveY = 0
 let moveDistance = 0
@@ -5,10 +7,34 @@ let moveDistance = 0
 Page({
     data: {
         coverTransform: 'translateY(0)',
-        coverTransition: ''
+        coverTransition: '',
+        userInfo:{},
+        recentPlayList:[],//用户播放记录
     },
-    onLoad: function (options) {
+    onLoad:function (options) {
+        //读取用户基本信息
+        let userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+        if (userInfo){
+            this.setData({
+                userInfo
+            })
+            this.getUserRecentPlayRecord(userInfo.userId).then(r=>{
 
+            })
+
+        }
+    },
+    //获取用户播放记录
+    async getUserRecentPlayRecord(userId){
+        let recentPlayList = await request('/user/record',{uid:userId,type:0})
+        let index = 0
+        recentPlayList = recentPlayList.allData.splice(0,10).map(item=>{
+            item.id = item.song.id
+            return item
+        })
+        this.setData({
+            recentPlayList
+        })
     },
     handleTouchStart(e) {
         this.setData({
@@ -37,7 +63,6 @@ Page({
     login(){
         wx.navigateTo({
             url:'/pages/login/login'
-
         })
     }
 });

@@ -69,14 +69,15 @@ Page({
             return
         }
         //手机号、密码验证没有问题，则发送请求进入后端验证
-        let res = await request('/login/cellphone',{phone,password})
+        let res = await request('/login/cellphone',{phone,password,isLogin:true})
         if (res.code === 200){
             wx.showToast({
                 title:'登录成功'
             })
             //将用户信息存储至本地
             wx.setStorageSync('userInfo',JSON.stringify(res.profile))
-            wx.switchTab({
+            //存储完毕后跳转回个人中心页面
+            wx.reLaunch({
                 url:'/pages/personal/personal'
             })
         }else if (res.code === 400){

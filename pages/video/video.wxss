@@ -1,0 +1,105 @@
+.header{
+    width: 100%;
+    padding: 10rpx 20rpx;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.header image{
+    width: 50rpx;
+    height: 50rpx;
+}
+.search{
+    flex: 1;
+    border: 1rpx solid silver;
+    height: 50rpx;
+
+    border-radius: 10rpx;
+    padding: 0 20rpx;
+    margin: 0 20rpx;
+}
+.searchText{
+    text-align: center;
+    color: deepskyblue;
+}
+.videoNav{
+    width: 100%;
+    display: flex;
+    padding: 0 20rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    box-sizing: border-box;
+}
+.navContainer{
+    flex-shrink: 0;
+    padding: 0 30rpx;
+    font-size: 28rpx;
+}
+.active{
+    border-bottom: 1rpx solid skyblue;
+}
+.videoList{
+    padding: 0 20rpx;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 10rpx;
+
+}
+.videoItem{
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20rpx;
+}
+.videoItem video{
+    width: 100%;
+    height: 360rpx;
+    border-radius: 10rpx;
+
+}
+.videoTitle{
+    height: 60rpx;
+    line-height: 60rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 10rpx 0 ;
+    font-size: 28rpx;
+}
+.videoHead{
+    display: flex;
+    justify-content: space-between;
+}
+.authorInfo{
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+}
+.authorInfo image{
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    margin: 0 20rpx;
+}
+.authorInfo text{
+    font-size: 25rpx;
+}
+.videoInfo{
+    width: 300rpx;
+    height: 80rpx;
+}
+.videoInfo > text{
+    display: inline-block;
+}
+
+.iconfont{
+    font-size: 35rpx;
+    color: black;
+    line-height: 80rpx;
+}
+.number{
+    font-size: 20rpx;
+    height: 100%;
+    vertical-align: top;
+}

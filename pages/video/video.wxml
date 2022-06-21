@@ -1,0 +1,34 @@
+<view class="videoContainer">
+    <!--    头部区域-->
+    <view class="header">
+        <image src="../../static/images/video/video.jpg"></image>
+        <input  placeholder="光辉岁月" type="text" placeholder-class="searchText" class="search"/>
+        <image src="/static/images/favicon.ico"></image>
+    </view>
+<!--导航区-->
+    <scroll-view class="videoNav" scroll-x enable-flex>
+        <view class="navContainer" wx:for="{{title}}" wx:key="id" >
+            <view class="navText {{navId === item.id?'active':''}}" bindtap="changeNav" data-id="{{item.id}}">
+                {{item.name}}
+            </view>
+        </view>
+    </scroll-view>
+<!--    视频区-->
+    <scroll-view class="videoList" scroll-y>
+        <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
+            <view class="videoHead">
+                <view class="authorInfo">
+                    <image src="{{item.data.creator.avatarUrl}}"></image>
+                    <text>{{item.data.creator.nickname}}</text>
+                </view>
+                <view class="videoInfo">
+                    <text class="iconfont icon-like"></text><text class="number">{{item.data.info.likedCount}}</text>
+                    <text class="iconfont icon-pinglun1"></text><text class="number">{{item.data.info.commentCount}}</text>
+
+                </view>
+            </view>
+            <video src="{{item.url}}"></video>
+            <text class="videoTitle">{{item.data.title}}</text>
+        </view>
+    </scroll-view>
+</view>

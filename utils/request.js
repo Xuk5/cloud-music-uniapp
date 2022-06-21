@@ -7,6 +7,14 @@ export default (url, data = {}, method = 'GET') => {
             method: method.toUpperCase(),
             data,
             success: (res) => {
+                if (data.isLogin){//如果请求为登录请求，将cookie存入本地
+                    wx.setStorage({
+                        key:'cookies',
+                        data:res.data.cookie
+                    })
+                    console.log(res)
+                }
+
                 resolve(res.data)
             },
             fail: (reason) => {

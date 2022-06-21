@@ -9,7 +9,8 @@ Page({
 	data: {
 		bannerList:[],
 		recommendList:[],
-		ranking:[]
+		rankList:[],
+
 	},
 	/**
 	 * 生命周期函数--监听页面加载
@@ -21,22 +22,27 @@ Page({
 			bannerList:banner,
 			recommendList:recommend.result,
 		})
-		let index = 0
-		let resultArr = []
-		while (index<5){
-			let rankList = await request('/top/list',{idx:index++})
-			let rankListItem = {
-				id:rankList.playlist.id,
-				name:rankList.playlist.name,
-				tracks:rankList.playlist.tracks.slice(0,3)
+		let rankList = []
+		//获取所有歌单列表
+		let res = await request('/toplist')
+		//只截取前五个歌单的数据
+		let resultArr = res.list.splice(0,5)
+		for (const item of resultArr) {//对歌单数据做循环
+			//将歌单的id作为参数发送请求获取歌单详细信息
+			let res = await request('/playlist/detail',{id:item.id})
+			//每个歌单只取前三首歌
+			let trackList = res.playlist.tracks.splice(0,3)
+			//将歌单信息封装到对象中为页面渲染做准备
+			let songObj = {
+				name:item.name,
+				id:item.id,
+				tracks:trackList
 			}
-			resultArr.push(rankListItem)
-			//每发一次请求就更新界面
-			this.setData({
-				ranking:resultArr
-			})
+			rankList.push(songObj)
 		}
-
+		this.setData({
+			rankList,
+		})
 	},
 
 	/**
