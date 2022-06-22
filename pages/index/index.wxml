@@ -9,7 +9,7 @@
 
     <!--    导航区-->
     <view class="navigator">
-        <view class="navItem">
+        <view class="navItem" bindtap="dailyRecommend">
             <text class="iconfont icon-meirituijian"></text>
             <text>每日推荐</text>
         </view>

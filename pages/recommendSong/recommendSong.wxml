@@ -1,0 +1,29 @@
+<view class="container">
+    <view class="header">
+        <image src="/static/images/recommendSong/recommendSong.jpg"></image>
+        <view class="date">6/22</view>
+    </view>
+
+    <view class="list-Container">
+        <view class="listHeader">
+            <text>播放全部</text>
+            <text>多选</text>
+        </view>
+        <scroll-view class="songList" scroll-y >
+            <view class="song" wx:for="{{songList}}" wx:key="id">
+                <image src="{{item.al.picUrl}}"></image>
+                <view class="songInfo">
+                    <view class="title">
+                        <text>{{item.name}}</text>
+                        <text wx:if="{{item.alia[0]}}" class="sub-title">({{item.alia[0]}})</text>
+
+                    </view>
+                    <text class="singer">{{item.ar[0].name}}</text>
+                </view>
+                <button class="share">
+                    <text class="iconfont icon-gengduo"></text>
+                </button>
+            </view>
+        </scroll-view>
+    </view>
+</view>

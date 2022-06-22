@@ -6,15 +6,28 @@
         <image src="/static/images/favicon.ico"></image>
     </view>
 <!--导航区-->
-    <scroll-view class="videoNav" scroll-x enable-flex>
-        <view class="navContainer" wx:for="{{title}}" wx:key="id" >
+    <scroll-view
+            class="videoNav"
+            scroll-x
+            enable-flex
+            scroll-into-view="{{'scroll'+navId}}"
+            scroll-with-animation
+    >
+        <view class="navContainer" wx:for="{{navTitle}}" wx:key="id" id="{{'scroll'+item.id}}">
             <view class="navText {{navId === item.id?'active':''}}" bindtap="changeNav" data-id="{{item.id}}">
                 {{item.name}}
             </view>
         </view>
     </scroll-view>
 <!--    视频区-->
-    <scroll-view class="videoList" scroll-y>
+    <scroll-view
+        class="videoList"
+        scroll-y
+        bindrefresherrefresh="handleRefresh"
+        refresher-enabled
+        refresher-triggered="{{isTriggered}}"
+        bindscrolltolower="handleToLower"
+    >
         <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
             <view class="videoHead">
                 <view class="authorInfo">
@@ -22,12 +35,31 @@
                     <text>{{item.data.creator.nickname}}</text>
                 </view>
                 <view class="videoInfo">
-                    <text class="iconfont icon-like"></text><text class="number">{{item.data.info.likedCount}}</text>
-                    <text class="iconfont icon-pinglun1"></text><text class="number">{{item.data.info.commentCount}}</text>
+                    <view class="like">
+                        <text class="iconfont icon-buoumaotubiao15"></text><text class="number">{{item.data.info.likedCount}}</text>
+                    </view>
+                    <view class="comment">
+                        <text class="iconfont icon-pinglun1"></text><text class="number">{{item.data.info.commentCount}}</text>
+                    </view>
+                    <button class="share" open-type="share" bindtap="handleShare" data-url="item.url" data-coverUrl="item.item.data.coverUrl">
+                        <text class="iconfont icon-gengduo"></text>
+                    </button>
 
                 </view>
             </view>
-            <video src="{{item.url}}"></video>
+            <video
+                src="{{item.url}}"
+                bindplay="handlePlay"
+                id="{{item.id}}"
+                poster="{{item.data.coverUrl}}"
+                class="common"
+                wx:if="{{item.id === playingVideo}}"
+                object-fit="fill"
+                bindtimeupdate="handlePlayTime"
+                bindended="handleEnded"
+            ></video>
+<!--            使用image图片代替video标签-->
+            <image src="{{item.data.coverUrl}}" id="{{item.id}}" class="common" bindtap="handlePlay" wx:else></image>
             <text class="videoTitle">{{item.data.title}}</text>
         </view>
     </scroll-view>
