@@ -1,5 +1,6 @@
 {
   "usingComponents": {
   },
-  "navigationBarTitleText": "每日推荐"
+  "navigationBarTitleText": "每日推荐",
+  "navigationStyle": "custom"
 }

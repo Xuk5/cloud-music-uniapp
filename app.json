@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/recommendSong/recommendSong",
+    "pages/songDetail/songDetail",
     "pages/video/video",
     "pages/login/login",
     "pages/index/index",
@@ -10,6 +11,7 @@
     "navigationBarBackgroundColor": "#00bfff",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "一起云音乐"
+
   },
   "tabBar": {
     "color": "0C0C0CFF",
@@ -36,5 +38,6 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap64.json"
+  "sitemapLocation": "sitemap64.json",
+  "requiredBackgroundModes": ["audio"]
 }

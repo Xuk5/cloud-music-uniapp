@@ -1,0 +1,24 @@
+@import "/static/iconfont/iconfont.wxss";
+.status-bar {
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 20rpx;
+    height: 80rpx;
+    width: 80rpx;
+    line-height: 35rpx;
+    text-align: center;
+}
+
+.goBack {
+    color: black;
+    mix-blend-mode: difference;
+    font-size: 40rpx;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+

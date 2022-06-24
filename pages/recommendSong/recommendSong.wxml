@@ -1,22 +1,34 @@
-<view class="container">
+<view
+    class="container"
+    scroll-y
+    enhanced="ture"
+    bindtouchend="handelDrag"
+>
     <view class="header">
-        <image src="/static/images/recommendSong/recommendSong.jpg"></image>
-        <view class="date">6/22</view>
+        <image src="/static/images/recommendSong/recommendSong.jpg" class="{{isScroll?'imgHidden':''}}"></image>
+        <view class="date {{isScroll?'dateHidden':''}}">
+            <text class="day">{{month}} / </text>
+            <text class="month">{{day}}</text>
+        </view>
     </view>
 
-    <view class="list-Container">
+    <view class="list-Container" >
         <view class="listHeader">
             <text>播放全部</text>
             <text>多选</text>
         </view>
-        <scroll-view class="songList" scroll-y >
-            <view class="song" wx:for="{{songList}}" wx:key="id">
-                <image src="{{item.al.picUrl}}"></image>
+        <scroll-view
+                id="songList"
+                class="songList"
+                scroll-y="{{isScroll}}"
+                wx:if="{{songList.length>0}}"
+        >
+            <view class="song" wx:for="{{songList}}" wx:key="id" data-index="{{index}}" data-id="{{item.id}}" bindtap="goMusic">
+                <image src="{{item.al.picUrl}}" lazy-load></image>
                 <view class="songInfo">
                     <view class="title">
                         <text>{{item.name}}</text>
                         <text wx:if="{{item.alia[0]}}" class="sub-title">({{item.alia[0]}})</text>
-
                     </view>
                     <text class="singer">{{item.ar[0].name}}</text>
                 </view>
@@ -25,5 +37,6 @@
                 </button>
             </view>
         </scroll-view>
+        <view wx:else class="loadingTip">每日推荐歌曲加载中...</view>
     </view>
 </view>

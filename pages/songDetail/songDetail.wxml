@@ -1,0 +1,30 @@
+<NavBar  show_bol='{{true}}' ></NavBar>
+
+<view class="container" >
+    <view style="background-image:url('{{isChange?oldMusicPic:songInfo[0].al.picUrl}}')" class="bgImg"></view>
+    <view class="songInfo">
+        <text class="title">{{songInfo[0].name}}</text>
+        <text class="singer">{{songInfo[0].ar[0].name}}</text>
+    </view>
+    <view class="discContainer">
+        <image class="disc" src="/static/images/song/disc.png" style="animation-play-state:{{isPlay?'running':'paused'}}"></image>
+        <view class="bottom"></view>
+        <image
+                class="needle {{isPlay?'needleRotate':''}}"
+                src="/static/images/song/needle.png"
+        ></image>
+        <image
+                class="disc coverPic"
+                src="{{songInfo[0].al.picUrl}}"
+                style="animation-play-state:{{isPlay?'running':'paused'}};"
+        ></image>
+    </view>
+<!--    底部控制播放区域-->
+    <view class="playArea">
+        <text class="iconfont icon-iconsMusicyemianbofangmoshiShuffle"></text>
+        <text class="iconfont icon-shangyishou" data-type="last" bindtap="switchMusic"></text>
+        <text class="iconfont {{isPlay?'icon-zanting':'icon-bofang'}} big" bindtap="controlPlay"></text>
+        <text class="iconfont icon-next" data-type="next" bindtap="switchMusic"></text>
+        <text class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
+    </view>
+</view>

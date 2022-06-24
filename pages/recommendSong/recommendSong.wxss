@@ -7,19 +7,25 @@
 }
 .header{
     position: relative;
-
 }
 .header image{
     width: 100%;
     height: 350rpx;
 }
+.imgHidden{
+    filter: blur(5rpx);
+    transition: all 0.2s linear;
+}
 .date{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 50rpx;
+    top: 55%;
+    left: 5%;
+    font-size: 80rpx;
     color: white;
+}
+.dateHidden{
+    opacity: 0;
+    transition: opacity 0.2s linear;
 }
 .list-Container{
     height: calc(100vh - 150rpx);
@@ -36,22 +42,22 @@
     width: 100%;
     justify-content: space-between;
     margin-bottom: 20rpx;
-
     background-color: white;
-
+    font-size: 30rpx;
 }
 .songList{
-    height: calc(100vh - 210rpx);
+    height: calc(100% - 40rpx);
+    padding-bottom: 5%;
 }
 .song{
     display: flex;
     justify-content: space-between;
-    height: 100rpx;
-    margin-top: 20rpx;
+    height: 80rpx;
+    margin-bottom: 30rpx;
 }
 .song image{
-    width: 100rpx;
-    height: 100rpx;
+    width: 80rpx;
+    height: 80rpx;
     border-radius: 10rpx;
 }
 .songInfo{
@@ -62,14 +68,15 @@
     justify-content: space-between;
 }
 .singer{
-    font-size: 26rpx;
+    font-size: 24rpx;
 }
 .title{
     width: 500rpx;
     display: flex;
+    font-size: 29rpx;
 }
 .title>text:first-of-type{
-    flex-basis: 1;
+    /*flex-basis: 1;*/
     white-space: nowrap;
 }
 .title>text:last-of-type{
@@ -77,7 +84,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
 }
 .sub-title{
     color: #919191;
@@ -95,4 +101,12 @@
 }
 .share::after{
     border: none;
+}
+.loadingTip{
+    margin-top: 20rpx;
+    font-size: 28rpx;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #6b6969;
 }

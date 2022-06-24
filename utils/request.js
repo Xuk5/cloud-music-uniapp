@@ -3,7 +3,7 @@ import {host,mobilehost} from './config'
 export default (url, data = {}, method = 'GET') => {
     return new Promise(((resolve, reject) => {
         wx.request({
-            url:mobilehost+url,
+            url:host+url,
             method: method.toUpperCase(),
             data,
             success: (res) => {
@@ -12,9 +12,7 @@ export default (url, data = {}, method = 'GET') => {
                         key:'cookies',
                         data:res.data.cookie
                     })
-                    console.log(res)
                 }
-
                 resolve(res.data)
             },
             fail: (reason) => {

@@ -1,5 +1,15 @@
 {
   "dependencies": {
-    "@babel/plugin-transform-runtime": "^7.18.5"
-  }
+    "@babel/plugin-transform-runtime": "^7.18.5",
+    "pubsub-js": "^1.9.4"
+  },
+  "name": "wechat-demo",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

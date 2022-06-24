@@ -42,7 +42,8 @@ Page({
         })
     },500),
     //登录的回调
-    async login(){
+    async login(e){
+        console.log(e)
         let {phone,password} = this.data
         //手机号验证
         if (!phone){
@@ -77,9 +78,7 @@ Page({
             //将用户信息存储至本地
             wx.setStorageSync('userInfo',JSON.stringify(res.profile))
             //存储完毕后跳转回个人中心页面
-            wx.reLaunch({
-                url:'/pages/personal/personal'
-            })
+            wx.navigateBack()
         }else if (res.code === 400){
             wx.showToast({
                 title:'手机号错误',
