@@ -1,25 +1,50 @@
-<NavBar  show_bol='{{true}}' ></NavBar>
+<NavBar show_bol='{{true}}'></NavBar>
 
-<view class="container" >
+<view class="container">
     <view style="background-image:url('{{isChange?oldMusicPic:songInfo[0].al.picUrl}}')" class="bgImg"></view>
-    <view class="songInfo">
-        <text class="title">{{songInfo[0].name}}</text>
+    <view class="songInfo" autoplay>
+        <view class="title">{{songInfo[0].name}}</view>
         <text class="singer">{{songInfo[0].ar[0].name}}</text>
     </view>
     <view class="discContainer">
-        <image class="disc" src="/static/images/song/disc.png" style="animation-play-state:{{isPlay?'running':'paused'}}"></image>
+        <image
+            class="needle {{isPlay?'needleRotate':''}}"
+            src="/static/images/song/needle.png"
+        ></image>
         <view class="bottom"></view>
-        <image
-                class="needle {{isPlay?'needleRotate':''}}"
-                src="/static/images/song/needle.png"
-        ></image>
-        <image
-                class="disc coverPic"
-                src="{{songInfo[0].al.picUrl}}"
-                style="animation-play-state:{{isPlay?'running':'paused'}};"
-        ></image>
+        <swiper class="discSwiper" circular >
+            <swiper-item class="discItem" wx:for="{{switchList}}" wx:key="id">
+                <image class="disc" src="/static/images/song/disc.png"
+                       style="animation-play-state:{{isPlay?'running':'paused'}}"></image>
+                <image
+                        class="disc coverPic"
+                        src="{{item.al.picUrl}}"
+                        style="animation-play-state:{{isPlay?'running':'paused'}};"
+                ></image>
+            </swiper-item>
+        </swiper>
+
     </view>
-<!--    底部控制播放区域-->
+    <!--    进度条区域-->
+    <view class="progressContainer">
+        <text>{{currentTime}}</text>
+        <!--总进度条-->
+        <slider
+                class="progressBar"
+                block-size="12"
+                backgroundColor="rgba(0,0,0,0.5)"
+                min="0"
+                max="450"
+                value="{{currentWidth}}"
+                activeColor="white"
+                bindchange="dragEnd"
+                bindchanging="dragging"
+        >
+        </slider>
+
+        <text>{{totalTime}}</text>
+    </view>
+    <!--    底部控制播放区域-->
     <view class="playArea">
         <text class="iconfont icon-iconsMusicyemianbofangmoshiShuffle"></text>
         <text class="iconfont icon-shangyishou" data-type="last" bindtap="switchMusic"></text>

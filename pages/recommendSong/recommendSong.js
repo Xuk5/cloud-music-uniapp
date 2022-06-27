@@ -30,32 +30,13 @@ Page({
             this.setData({
                 songList:value
             })
-        })
-        //订阅来自songDetail的消息
-        Pubsub.subscribe('changeSong',(msg,type)=>{
-            let {songList,index} = this.data
-            console.log(index,typeof index)
-            if (type === 'last'){//上一首歌
-                if (index === 0){
-                    index = songList.length-1
-                }else {
-                    index -= 1
-                }
-            }else {//下一首歌
-                if (index === songList.length-1){
-                    index = 0
-                }else {
-                    index += 1
-                }
-            }
-            console.log(songList,index)
-            let id = songList[index].id
-            //发布消息将id传给歌曲详情页面
-            Pubsub.publish('getId',id)
-            this.setData({
-                index
+            Pubsub.subscribe('sendSongList', ()=>{
+                Pubsub.publish('getSongList',this.data.songList)
             })
         })
+        //订阅来自songDetail的消息
+
+
     },
     onShow() {
     },
@@ -85,14 +66,16 @@ Page({
     },
     //点击歌曲跳转到歌曲详情
     goMusic({currentTarget}){
+        let {songList} = this.data
         let {id,index} = currentTarget.dataset
-        console.log(index)
         this.setData({
             index:index
         })
-
         wx.navigateTo({
-            url:'/pages/songDetail/songDetail?id='+ id
+            url:'/pages/songDetail/songDetail?id='+id,
+            success:()=>{
+
+            }
         })
     }
 });
