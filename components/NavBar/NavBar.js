@@ -8,7 +8,10 @@ Component({
             type: Boolean,
             value: true
         },
-
+        style_state:{ //控制页面样式
+            type:Boolean,
+            value:false
+        }
     },
     /* 组件的初始数据 */
     data: {

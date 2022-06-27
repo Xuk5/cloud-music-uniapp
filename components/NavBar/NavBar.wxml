@@ -1,4 +1,8 @@
-<view class='status-bar' bindtap='goBack' style="padding-top:{{cover_state ? bar_Height + 44 : 0}}rpx;">
+<view
+    class="status-bar {{style_state?'thick':''}}"
+    bindtap='goBack'
+    style="padding-top:{{cover_state ? bar_Height + 44 : 0}}rpx;"
+>
     <text class="iconfont icon-fanhui goBack" hidden='{{show_bol}}'></text>
 </view>
 

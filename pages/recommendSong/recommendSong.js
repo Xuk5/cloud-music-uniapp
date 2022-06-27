@@ -43,6 +43,7 @@ Page({
     //获取每日推荐歌曲列表
     async getRecommendSongList(){
         let res = await request('/recommend/songs')
+        console.log(res)
         return res.data.dailySongs
     },
     handelDrag(e){

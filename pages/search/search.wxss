@@ -1,0 +1,141 @@
+.container{
+    height: 100%;
+    position: relative;
+    background-color: #eee;
+}
+.searchHeader{
+    width: 100% ;
+    height: 80rpx;
+    position: fixed;
+    top: 9vh;
+    padding: 10rpx 30rpx;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background-color: skyblue;
+    z-index: 999;
+}
+.full{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.input{
+    width: 85%;
+    height: 100%;
+    background-color: #e8e5e5;
+    border-radius: 30rpx;
+    padding:0 60rpx;
+    font-size: 28rpx;
+}
+.searchBtn{
+    padding: 0;
+    margin: 0;
+    width: 100rpx;
+    font-size: 28rpx;
+    background-color: skyblue;
+    line-height: 60rpx;
+}
+.searchBtn::after{
+    border: none;
+}
+.icon-search{
+    position: absolute;
+    height: 60rpx;
+    width: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+}
+.searchArea{
+    position: absolute;
+    top: 220rpx;
+    padding: 20rpx 30rpx;
+    /*height: 2150rpx;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+    z-index: 10;
+    background-color: #eee;
+}
+.searchHistory{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    padding: 20rpx 0;
+}
+.searchList{
+    height: 1730rpx;
+    margin-top: 15rpx;
+}
+.searchHistory > view{
+    height: 30rpx;
+    background-color: white;
+    padding: 10rpx 30rpx;
+    font-size: 25rpx;
+    margin: 10rpx 20rpx 10rpx 0;
+    border-radius: 30rpx;
+    color: #676767;
+}
+
+.swiperItem{
+    display: block;
+    box-sizing: border-box;
+    padding: 20rpx 30rpx;
+    background-color: white;
+    border-radius: 20rpx;
+}
+.swiper-header{
+    display: flex;
+    height: 80rpx;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 2rpx solid #eee;
+}
+.swiper-header>text{
+    font-weight: bold;
+}
+.playAll{
+    padding: 0;
+    margin: 0;
+    width: 100rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 24rpx;
+    border-radius: 40rpx;
+    background-color: white;
+}
+.playAll::after{
+    border:5rpx solid #eee;
+}
+.songList{
+    padding: 20rpx 0;
+    box-sizing: border-box;
+}
+.song{
+    display: flex;
+    align-items: center;
+    font-size: 26rpx;
+    height: 80rpx;
+}
+.songList > view:first-of-type .title,
+.songList > view:nth-of-type(2) .title,
+.songList > view:nth-of-type(3) .title{
+    font-weight: bold;
+}
+.songList >view .order{
+    color: #9d9b9b;
+}
+.songList > view:first-of-type .order,
+.songList > view:nth-of-type(2) .order,
+.songList > view:nth-of-type(3) .order{
+    font-weight: bold;
+    color: red;
+}
+
+
+.order{
+    flex-basis: 50rpx;
+}
+
+

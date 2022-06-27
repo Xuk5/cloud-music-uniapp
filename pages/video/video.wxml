@@ -19,7 +19,6 @@
             </view>
         </view>
     </scroll-view>
-<!--    视频区-->
     <scroll-view
         class="videoList"
         scroll-y
@@ -27,6 +26,7 @@
         refresher-enabled
         refresher-triggered="{{isTriggered}}"
         bindscrolltolower="handleToLower"
+        wx:if="{{videoList.length>0}}"
     >
         <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
             <view class="videoHead">
@@ -36,7 +36,7 @@
                 </view>
                 <view class="videoInfo">
                     <view class="like">
-                        <text class="iconfont icon-buoumaotubiao15"></text><text class="number">{{item.data.info.likedCount}}</text>
+                        <text class="iconfont icon-like"></text><text class="number">{{item.data.info.likedCount}}</text>
                     </view>
                     <view class="comment">
                         <text class="iconfont icon-pinglun1"></text><text class="number">{{item.data.info.commentCount}}</text>
@@ -63,4 +63,5 @@
             <text class="videoTitle">{{item.data.title}}</text>
         </view>
     </scroll-view>
+    <view class="loading" wx:else>视频内容加载中，请稍后...</view>
 </view>

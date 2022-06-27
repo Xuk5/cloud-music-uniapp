@@ -1,0 +1,46 @@
+<NavBar style_state="{{true}}"></NavBar>
+<view class="container">
+    <view class="searchHeader">
+<!--        <view class="full"></view>-->
+        <input placeholder="{{defaultKeyword}}" value="{{keywords}}" class="input"></input>
+        <text class="iconfont icon-search"></text>
+        <button class="searchBtn">搜索</button>
+    </view>
+    <view class="searchArea">
+        <view class="history">
+            <text>历史</text>
+            <view class="searchHistory">
+                <view>akb48</view>
+                <view>乃木坂46</view>
+                <view>乃木坂46</view>
+                <view>乃木坂46</view>
+                <view>乃木坂46</view>
+                <view>乃木坂46</view>
+                <view>下雨了是我在想你</view>
+            </view>
+        </view>
+        <view class="history recommend">
+            <text>推荐</text>
+            <view class="searchHistory">
+                <view>akb48</view>
+                <view>乃木坂46</view>
+            </view>
+        </view>
+        <swiper class="searchList" next-margin="220rpx">
+            <swiper-item class="swiperItem">
+                <view class="swiper-header">
+                    <text>热搜榜</text>
+                    <button class="playAll">播放</button>
+                </view>
+                <view class="songList">
+                    <view class="song" wx:for="{{hotSearch}}" wx:key="score">
+                        <text class="order">{{index+1}}</text>
+                        <text class="title">{{item.searchWord}}</text>
+                    </view>
+
+                </view>
+            </swiper-item>
+        </swiper>
+    </view>
+
+</view>

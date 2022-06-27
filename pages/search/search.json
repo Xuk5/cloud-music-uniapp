@@ -2,5 +2,6 @@
   "usingComponents": {
     "NavBar": "/components/NavBar/NavBar"
   },
+  "navigationBarTitleText": "发现更多好音乐",
   "navigationStyle": "custom"
 }

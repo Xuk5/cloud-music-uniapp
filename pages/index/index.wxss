@@ -32,6 +32,8 @@
 	background-color: skyblue;
 	text-align: center;
 	line-height: 100rpx;
+	font-size: 50rpx;
+	color: white;
 }
 .recommender{
 	width: 100%;

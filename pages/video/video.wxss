@@ -135,3 +135,11 @@
 .share::after{
     border: none;
 }
+.loading{
+    margin-top: 20rpx;
+    font-size: 28rpx;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #6b6969;
+}

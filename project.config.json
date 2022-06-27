@@ -30,7 +30,10 @@
 		"disableUseStrict": false,
 		"useStaticServer": true,
 		"showES6CompileOption": false,
-		"useCompilerPlugins": false
+		"useCompilerPlugins": false,
+		"lazyloadPlaceholderEnable": false,
+		"preloadBackgroundData": false,
+		"uglifyFileName": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.17.0",
