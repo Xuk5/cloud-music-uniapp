@@ -13,7 +13,8 @@
 *   5)密码正确返回给前端数据，提示用户登录成功（会携带用户相关信息）
 * */
 import request from "../../utils/request";
-import regeneratorRuntime from "../../runtime";
+import Pubsub from "pubsub-js";
+
 function debounce(callback,delay) {
     let timer
     return function (e) {
@@ -75,10 +76,20 @@ Page({
                 title:'登录成功',
             })
             //将用户信息存储至本地
-            wx.setStorageSync('userInfo',JSON.stringify(res.profile))
-            await this.getUserPlaylist(res.profile.userId)
+            wx.setStorage({
+                key:'userInfo',
+                data:JSON.stringify(res.profile),
+                success:()=>{
+                    Pubsub.publish('getUserInfo')
+                    this.getUserPlaylist(res.profile.userId).then(v=>{
+                        wx.navigateBack({delta:1})
+                    })
+
+                }
+            })
+            // this.getUserPlaylist(res.profile.userId)
             //存储完毕后跳转回个人中心页面
-            wx.navigateBack()
+
         }else if (res.code === 400){
             wx.showToast({
                 title:'手机号错误',
@@ -99,6 +110,7 @@ Page({
     //获取用户的歌单
     async getUserPlaylist(uid){
         let res = await request('/user/playlist',{uid})
+        console.log(res)
         let id  = res.playlist[0].id
         let result = await request('/playlist/track/all',{id})
         wx.setStorageSync('userPlaylist',result.songs)

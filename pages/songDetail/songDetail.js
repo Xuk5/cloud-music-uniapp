@@ -43,6 +43,7 @@ Page({
             this.changePlayState(false)
         })
         this.music.onTimeUpdate(() => {
+            let {songInfo} = this.data
             let currentTime = moment(this.music.currentTime * 1000).format('mm:ss')
             let currentWidth = this.music.currentTime / this.music.duration * 450
             this.setData({
@@ -142,14 +143,12 @@ Page({
         Pubsub.publish('sendSongList')
         Pubsub.subscribe('getSongList', (msg,data) => {
             //如果没有传songList，则获取用户自己的歌单，并将这首歌加入歌单
-            let songList = data
-            //     || wx.getStorage({
-            //     key:'userPlaylist',
-            //     success:({data})=>{
-            //
-            //     }
-            // })
+            let songList = data || wx.getStorageSync('userPlaylist')
             this.getMusicInfo(id).then(v => {
+                if (songList.indexOf(v.songs[0]) === -1){
+                    songList.unshift(v.songs)
+                    wx.setStorageSync('userPlaylist',songList)
+                }
                 this.setData({
                     songInfo: v.songs,
                     songList

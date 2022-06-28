@@ -1,5 +1,5 @@
 import request from "../../utils/request";
-
+import Pubsub from "pubsub-js";
 let startY = 0
 let moveY = 0
 let moveDistance = 0
@@ -21,8 +21,8 @@ Page({
             this.getUserRecentPlayRecord(userInfo.userId).then(r=>{
 
             })
-
         }
+
     },
     //获取用户播放记录
     async getUserRecentPlayRecord(userId){
@@ -64,5 +64,21 @@ Page({
         wx.navigateTo({
             url:'/pages/login/login'
         })
+    },
+    onShow:function () {
+        let {userInfo} = this.data
+        if (!userInfo.length){
+            Pubsub.subscribe('getUserInfo',(mas,data)=>{
+                let {userInfo} = this.data
+                userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+                console.log(userInfo)
+                this.setData({
+                    userInfo
+                })
+                this.getUserRecentPlayRecord(userInfo.userId).then(r=>{
+
+                })
+            })
+        }
     }
 });

@@ -12,7 +12,7 @@
         </swiper-item>
     </swiper>
 
-    <!--    导航区-->
+    <!--导航区-->
     <view class="navigator">
         <view class="navItem" bindtap="dailyRecommend">
             <text class="iconfont icon-meirituijian"></text>
@@ -36,7 +36,7 @@
         </view>
     </view>
 
-    <!--    推荐歌曲区域-->
+    <!--推荐歌曲区域-->
 
     <view class="recommender">
         <NavHeader title="推荐歌曲" nav="为你精心推荐"></NavHeader>

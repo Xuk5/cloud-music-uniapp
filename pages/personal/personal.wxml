@@ -1,5 +1,5 @@
 <view class="personalContainer">
-    <view class="personalSection" style="background-image:url({{userInfo.backgroundUrl?userInfo.backgroundUrl:'/static/images/personal/bglmg2.jpg'}})">
+    <view class="personalSection" style="background-image:url({{userInfo.backgroundUrl?userInfo.backgroundUrl:'../../static/images/personal/bgImg2.jpg'}})">
         <view class="userInfo" bindtap="login">
             <image src="{{userInfo.avatarUrl?userInfo.avatarUrl:'../../static/images/personal/missing-face.png'}}"></image>
             <text>{{userInfo.nickname?userInfo.nickname:'游客'}}</text>
