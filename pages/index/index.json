@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "NavHeader": "/components/NavHeader/NavHeader"
-  }
+    "NavBar": "/components/NavBar/NavBar",
+    "NavHeader": "/components/NavHeader/NavHeader",
+    "SearchInput": "/components/SearchInput/SearchInput"
+  },
+  "navigationStyle": "custom"
 }

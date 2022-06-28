@@ -10,12 +10,14 @@ Page({
 		bannerList:[],
 		recommendList:[],
 		rankList:[],
-
+		defaultKeyword:'',
+		bar_Height: wx.getSystemInfoSync().statusBarHeight
 	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad:async function (options) {
+		this.getKeyword()
 		let banner = await request('/banner',{type:2})
 		let recommend = await request('/personalized',{limit:10})
 		this.setData({
@@ -43,10 +45,23 @@ Page({
 		this.setData({
 			rankList,
 		})
+		console.log(wx.getStorageSync('userPlaylist'))
 	},
 	dailyRecommend(){
 		wx.navigateTo({
 			url:"/pages/recommendSong/recommendSong"
+		})
+	},
+	//获取默认搜索关键字
+	async getKeyword(){
+		let res = await request('/search/default')
+		this.setData({
+			defaultKeyword:res.data.realkeyword
+		})
+	},
+	goSearchPage(){
+		wx.navigateTo({
+			url:'/pages/search/search'
 		})
 	},
 	/**
@@ -96,5 +111,6 @@ Page({
 	 */
 	onShareAppMessage: function () {
 
-	}
+	},
+
 })

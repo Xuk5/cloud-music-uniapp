@@ -1,23 +1,28 @@
 <NavBar style_state="{{true}}"></NavBar>
 <view class="container">
     <view class="searchHeader">
-<!--        <view class="full"></view>-->
-        <input placeholder="{{defaultKeyword}}" value="{{keywords}}" class="input"></input>
+        <input placeholder="{{defaultKeyword}}" value="{{keywords}}" class="input" bindinput="handelInput"></input>
+        <text class="clear" wx:if="{{isSearching}}" bindtap="clearInput">×</text>
         <text class="iconfont icon-search"></text>
-        <button class="searchBtn">搜索</button>
+        <button class="searchBtn" bindtap="goSearch">搜索</button>
     </view>
-    <view class="searchArea">
+    <view class="searchAdvice" wx:if="{{isSearching}}">
+        <view class="adviceItem" wx:for="{{searchAdvice}}" wx:key="id" data-keywords="{{item.name}}" bindtap="goSearch">
+            <text class="iconfont icon-search"></text>
+            <text>{{item.name}}</text>
+        </view>
+    </view>
+    <view class="searchArea" wx:else>
         <view class="history">
             <text>历史</text>
+            <text class="iconfont icon-shanchu" bindtap="clearHistory"></text>
             <view class="searchHistory">
-                <view>akb48</view>
-                <view>乃木坂46</view>
-                <view>乃木坂46</view>
-                <view>乃木坂46</view>
-                <view>乃木坂46</view>
-                <view>乃木坂46</view>
-                <view>下雨了是我在想你</view>
+                <view wx:for="{{isHidden?hiddenSearchHistory:searchHistory}}" wx:key="index">{{item}}</view>
+                <view wx:if="{{searchHistory.length>3}}" class="openBtn" bindtap="hideHistory">
+                    {{isHidden ? 'v' : '^'}}
+                </view>
             </view>
+
         </view>
         <view class="history recommend">
             <text>推荐</text>
@@ -26,21 +31,21 @@
                 <view>乃木坂46</view>
             </view>
         </view>
-        <swiper class="searchList" next-margin="220rpx">
-            <swiper-item class="swiperItem">
+        <view class="searchList">
+            <view class="swiperItem">
                 <view class="swiper-header">
                     <text>热搜榜</text>
                     <button class="playAll">播放</button>
                 </view>
                 <view class="songList">
-                    <view class="song" wx:for="{{hotSearch}}" wx:key="score">
-                        <text class="order">{{index+1}}</text>
+                    <view class="song" wx:for="{{hotSearch}}" wx:key="score" data-keywords="{{item.searchWord}}"
+                          bindtap="goSearch">
+                        <text class="order">{{index + 1}}</text>
                         <text class="title">{{item.searchWord}}</text>
                     </view>
-
                 </view>
-            </swiper-item>
-        </swiper>
+            </view>
+        </view>
     </view>
 
 </view>

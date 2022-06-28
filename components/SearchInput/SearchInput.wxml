@@ -1,0 +1,5 @@
+<view class="searchHeader" style="top:{{top+'rpx'}};background-color:{{bgColor}}">
+    <input placeholder="{{defaultKeyword}}" value="{{keywords}}" class="input" bindinput="handelInput"></input>
+    <text class="clear" wx:if="{{isSearching}}" bindtap="clearInput">×</text>
+    <text class="iconfont icon-search"></text>
+</view>

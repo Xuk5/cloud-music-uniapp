@@ -141,7 +141,14 @@ Page({
     getMusicList(id){
         Pubsub.publish('sendSongList')
         Pubsub.subscribe('getSongList', (msg,data) => {
+            //如果没有传songList，则获取用户自己的歌单，并将这首歌加入歌单
             let songList = data
+            //     || wx.getStorage({
+            //     key:'userPlaylist',
+            //     success:({data})=>{
+            //
+            //     }
+            // })
             this.getMusicInfo(id).then(v => {
                 this.setData({
                     songInfo: v.songs,

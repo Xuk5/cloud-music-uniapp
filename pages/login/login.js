@@ -43,7 +43,6 @@ Page({
     },500),
     //登录的回调
     async login(e){
-        console.log(e)
         let {phone,password} = this.data
         //手机号验证
         if (!phone){
@@ -73,10 +72,11 @@ Page({
         let res = await request('/login/cellphone',{phone,password,isLogin:true})
         if (res.code === 200){
             wx.showToast({
-                title:'登录成功'
+                title:'登录成功',
             })
             //将用户信息存储至本地
             wx.setStorageSync('userInfo',JSON.stringify(res.profile))
+            await this.getUserPlaylist(res.profile.userId)
             //存储完毕后跳转回个人中心页面
             wx.navigateBack()
         }else if (res.code === 400){
@@ -95,5 +95,12 @@ Page({
                 icon:'none'
             })
         }
+    },
+    //获取用户的歌单
+    async getUserPlaylist(uid){
+        let res = await request('/user/playlist',{uid})
+        let id  = res.playlist[0].id
+        let result = await request('/playlist/track/all',{id})
+        wx.setStorageSync('userPlaylist',result.songs)
     }
 });

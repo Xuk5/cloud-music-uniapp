@@ -1,7 +1,11 @@
 /* pages/index/index.wxss */
+.container{
+	position: relative;
+}
 .banner{
 	width: 100%;
-	height:380rpx
+	height:300rpx;
+	margin-top: 10vh;
 }
 .banner image{
 	width: 100%;
@@ -25,7 +29,7 @@
 .navItem>text:nth-child(2){
 	font-size: 28rpx;
 }
-.iconfont{
+.navigator .iconfont{
 	width: 100rpx;
 	height: 100rpx;
 	border-radius: 50%;
@@ -107,4 +111,49 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+.searchHeader{
+	width: 100% ;
+	height: 10vh;
+	position: fixed;
+	top: 0vh;
+	padding: 5vh 30rpx 10rpx 30rpx;
+	display: flex;
+	justify-content: space-between;
+	box-sizing: border-box;
+	background-color: white;
+	z-index: 999;
+}
+.input{
+	width: 350rpx;
+	height: 55rpx;
+	background-color: white;
+	border-radius: 30rpx;
+	padding:0 60rpx;
+	font-size: 28rpx;
+	border: 1rpx solid black;
+	/*margin-top: 35rpx;*/
+}
+.clear{
+	width: 60rpx;
+	height: 60rpx;
+	line-height: 60rpx;
+	text-align: center;
+	position: absolute;
+	right: 120rpx;
+	font-size: 45rpx;
+}
+
+.searchBtn::after{
+	border: none;
+}
+.icon-search{
+	position: absolute;
+	height: 60rpx;
+	width:60rpx;
+	left: 30rpx;
+	line-height: 60rpx;
+	text-align: center;
+	color: black;
+	background-color: none;
 }

@@ -1,4 +1,9 @@
 <view class="container">
+    <NavBar show_bol="{{false}}" cover_state="{{true}}"></NavBar>
+    <view class="searchHeader">
+        <input placeholder="{{defaultKeyword}}" class="input" bindtap="goSearchPage"></input>
+        <text class="iconfont icon-search"></text>
+    </view>
     <!-- 轮播图区域 -->
     <swiper class="banner" indicator-dots indicator-color="ivory" indicator-active-color="#bfa" autoplay interval="4000"
             duration="1000">
