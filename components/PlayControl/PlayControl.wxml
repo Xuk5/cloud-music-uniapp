@@ -1,0 +1,21 @@
+<view class="container">
+    <view class="playBar" >
+        <view class="imageContainer" style="animation-play-state:{{isPlay?'running':'paused'}}">
+            <image class="disc"
+                   src="/static/images/song/disc.png"
+            ></image>
+            <image
+                    class="disc coverPic"
+                    src="{{songInfo[0].al.picUrl}}"
+            ></image>
+        </view>
+
+        <view class="songInfo" bindtap="goDetail">
+            <text class="title">{{songInfo[0].al.name}}</text>
+            <text class="singer">-{{songInfo[0].ar[0].name}}</text>
+        </view>
+        <view class="iconfont {{isPlay?'icon-zanting':'icon-bofang'}}" bindtap="changePlay"></view>
+        <text class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
+    </view>
+</view>
+

@@ -14,18 +14,8 @@
 * */
 import request from "../../utils/request";
 import Pubsub from "pubsub-js";
+import debounce from "../../utils/debounce";
 
-function debounce(callback,delay) {
-    let timer
-    return function (e) {
-        if (timer){
-            clearTimeout(timer)
-        }
-        timer = setTimeout(()=>{
-            callback.call(this,e)
-        },delay)
-    }
-}
 
 Page({
     data: {
@@ -72,24 +62,19 @@ Page({
         //手机号、密码验证没有问题，则发送请求进入后端验证
         let res = await request('/login/cellphone',{phone,password,isLogin:true})
         if (res.code === 200){
-            wx.showToast({
-                title:'登录成功',
-            })
             //将用户信息存储至本地
             wx.setStorage({
                 key:'userInfo',
                 data:JSON.stringify(res.profile),
                 success:()=>{
                     Pubsub.publish('getUserInfo')
-                    this.getUserPlaylist(res.profile.userId).then(v=>{
-                        wx.navigateBack({delta:1})
-                    })
-
+                    // Pubsub.publish('getPlayList',res.profile.userId)
+                    wx.navigateBack({delta:1})
                 }
             })
-            // this.getUserPlaylist(res.profile.userId)
-            //存储完毕后跳转回个人中心页面
-
+            wx.showToast({
+                title:'登录成功',
+            })
         }else if (res.code === 400){
             wx.showToast({
                 title:'手机号错误',
@@ -107,12 +92,5 @@ Page({
             })
         }
     },
-    //获取用户的歌单
-    async getUserPlaylist(uid){
-        let res = await request('/user/playlist',{uid})
-        console.log(res)
-        let id  = res.playlist[0].id
-        let result = await request('/playlist/track/all',{id})
-        wx.setStorageSync('userPlaylist',result.songs)
-    }
+
 });

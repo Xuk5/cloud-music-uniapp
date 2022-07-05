@@ -1,6 +1,9 @@
 // pages/index/index.js
 import request from "../../utils/request";
-import regeneratorRuntime from '../../runtime';//用于解决async/await无法使用的问题
+import regeneratorRuntime from '../../runtime';
+import Pubsub from "pubsub-js";
+
+//用于解决async/await无法使用的问题
 Page({
 
 	/**
@@ -45,7 +48,7 @@ Page({
 		this.setData({
 			rankList,
 		})
-		console.log(wx.getStorageSync('userPlaylist'))
+
 	},
 	dailyRecommend(){
 		wx.navigateTo({
@@ -63,6 +66,26 @@ Page({
 		wx.navigateTo({
 			url:'/pages/search/search'
 		})
+	},
+	//点击歌曲前往音乐界面
+	goDetail(e){
+		let {songid,listid} = e.currentTarget.dataset
+		Pubsub.subscribe('sendSongList',()=>{
+			this.getSongList(listid).then(v=>{
+				Pubsub.publish('getSongList',v.playlist.tracks)
+			})
+		})
+		wx.navigateTo({
+			url:'/pages/songDetail/songDetail?id='+songid,
+			success:()=>{
+
+			}
+		})
+	},
+	//获取歌单详情
+	async getSongList(id){
+		let res = await request('/playlist/detail',{id})
+		return res
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成

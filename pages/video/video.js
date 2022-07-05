@@ -7,7 +7,7 @@ Page({
         videoList: [],//视频列表
         playingVideo: '',//视频的id标识
         videoUpdate:[],//用于记录视频播放的时长和视频的Id
-        isTriggered:false,//记录是否开启下拉刷新
+        isTriggered:false,//记录是否  开启下拉刷新
         refreshIndex:0,//记录分页数据
     },
 

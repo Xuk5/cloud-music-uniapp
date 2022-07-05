@@ -1,11 +1,11 @@
 //注册小程序应用
 App({
-
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch: function () {
-
+    wx.setStorageSync('userPlayList',[])
+    this.globalData.music = wx.getBackgroundAudioManager()
   },
 
   /**
@@ -29,6 +29,7 @@ App({
   globalData:{
     isMusicPlay:false,//是否有音乐在播放
     musicId:'',//标识音乐的ID
-
-  }
+    songInfo:[],
+    music: {}
+  },
 })

@@ -1,0 +1,35 @@
+<view class="container">
+    <scroll-view
+            class="navHead"
+            scroll-x
+            enable-flex
+    >
+        <view>官方</view>
+        <view>官方</view>
+        <view>官方</view>
+        <view>官方</view>
+        <view>官方</view>
+        <view>官方</view>
+        <view>官方</view>
+        <view>官方</view>
+        <view>官方</view>
+    </scroll-view>
+    <view class="listRecommend">
+        <text>榜单推荐</text>
+        <view class="top-rank-container">
+            <view>
+                <text class="bigTitle">编辑推荐榜</text>
+                <text class="subTitle">每月更新</text>
+            </view>
+            <view>
+                <text class="bigTitle">说唱榜</text>
+                <text class="subTitle">每周五更新</text>
+            </view>
+            <view>
+                <text class="bigTitle">民谣榜</text>
+                <text class="subTitle">每周五更新</text>
+            </view>
+        </view>
+
+    </view>
+</view>

@@ -1,6 +1,6 @@
 @import "/static/iconfont/iconfont.wxss";
 .status-bar {
-    z-index: 999;
+    z-index: 999999;
     position: fixed;
     top: 0;
     height: 80rpx;
@@ -8,6 +8,7 @@
     line-height: 35rpx;
     text-align: center;
     padding: 0 15rpx;
+    margin-bottom: 10rpx;
 }
 .thick{
     background-color: skyblue;
@@ -16,12 +17,13 @@
 }
 .goBack {
     color: black;
-
     font-size: 40rpx;
     display: block;
     width: 60rpx;
     height: 60rpx;
     z-index: 99999;
+    line-height: 60rpx;
+    text-align: center;
 }
 
 

@@ -54,7 +54,7 @@
         <swiper class="ranking" next-margin="50rpx"  circular>
             <swiper-item class="rankingClass" wx:for="{{rankList}}" wx:key="id">
                 <view class="rankingName">{{item.name}}></view>
-                <view class="rankingSong" wx:for="{{item.tracks}}" wx:key="id" wx:for-item="song">
+                <view class="rankingSong" wx:for="{{item.tracks}}" wx:key="id" wx:for-item="song" bindtap="goDetail" data-listId="{{item.id}}" data-songId="{{song.id}}">
                     <image src="{{song.al.picUrl}}"></image>
                     <text>{{index+1}}</text>
                     <text class="rankingSongName">{{song.al.name}}</text>
@@ -63,4 +63,5 @@
             </swiper-item>
         </swiper>
     </view>
+    <PlayControl></PlayControl>
 </view>

@@ -31,7 +31,7 @@ Page({
         }
         //通过控制音频的实例来监听音乐的播放/暂停,解决系统的播放暂停与页面内不一致的问题
         //创建控制音乐播放的实例对象
-        this.music = wx.getBackgroundAudioManager()
+        this.music = app.globalData.music
         this.music.onPlay(() => {
             this.changePlayState(true)
             app.globalData.musicId = id
@@ -55,7 +55,9 @@ Page({
             //自然播放结束后切下一首歌
             this.switchMusic(undefined,'next')
         })
-
+        Pubsub.subscribe('outerPlay',(msg,data)=>{
+            this.changePlayState(data)
+        })
     },
     //修改播放状态的函数
     changePlayState(isPlay) {
@@ -65,6 +67,10 @@ Page({
             })
         },500)
         app.globalData.isMusicPlay = isPlay
+        //通知外部播放器播放或暂停
+        Pubsub.publish('controlPlay',isPlay)
+        //外部播放器控制播放
+
     },
     //获取歌曲详情
     async getMusicInfo(id) {
@@ -113,6 +119,8 @@ Page({
         })
         songInfo[0] = songList[index]
         this.getMusicUrl(songList[index].id).then(value => {
+            Pubsub.publish('getSongInfo',value.songs)
+            wx.setStorageSync('songInfo',value.songs)
             this.setData({
                 musicUrl:value.data[0].url,
                 songInfo,
@@ -143,12 +151,10 @@ Page({
         Pubsub.publish('sendSongList')
         Pubsub.subscribe('getSongList', (msg,data) => {
             //如果没有传songList，则获取用户自己的歌单，并将这首歌加入歌单
-            let songList = data || wx.getStorageSync('userPlaylist')
+            let songList = data
             this.getMusicInfo(id).then(v => {
-                if (songList.indexOf(v.songs[0]) === -1){
-                    songList.unshift(v.songs)
-                    wx.setStorageSync('userPlaylist',songList)
-                }
+                wx.setStorageSync('songInfo',v.songs)
+                Pubsub.publish('getSongInfo',v.songs)
                 this.setData({
                     songInfo: v.songs,
                     songList

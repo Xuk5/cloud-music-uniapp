@@ -67,10 +67,13 @@
                 <text>我的电台</text>
                 <text> > </text>
             </view>
+
+
         </view>
+
     </view>
 
+
 </view>
-
-
+<PlayControl style=""></PlayControl>
 

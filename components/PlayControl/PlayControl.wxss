@@ -1,0 +1,77 @@
+@import "/static/iconfont/iconfont.wxss";
+.container{
+    width: 100vw;
+    position: sticky;
+    height: 90rpx;
+    bottom: 0;
+    border-top: 1rpx solid #eee;
+    z-index: 99999999;
+    box-sizing: border-box;
+    padding: 0 0 20rpx 0;
+}
+
+.playBar{
+    width: 100%;
+    height: 90rpx;
+    background-color: white;
+    display: flex;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+    justify-content: space-between;
+    position: relative;
+}
+.imageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-bottom: 20rpx;
+    animation-name: rotate;
+    animation-duration: 30s;
+    animation-iteration-count:infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+.playBar .disc{
+    width: 90rpx;
+    height: 90rpx;
+
+}
+.playBar .coverPic{
+    width: 56rpx;
+    height: 56rpx;
+    position: absolute;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-28rpx);
+}
+@keyframes rotate {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+.iconfont{
+    width: 90rpx;
+    height: 90rpx;
+    text-align: center;
+    line-height: 90rpx;
+    font-size: 55rpx;
+    color: black;
+}
+.songInfo{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-left: 20rpx;
+    padding-bottom: 20rpx;
+}
+.singer{
+    font-size: 25rpx;
+    color: #626161;
+}
+.title{
+    font-size: 30rpx;
+}

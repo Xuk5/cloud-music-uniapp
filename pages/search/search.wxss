@@ -1,14 +1,15 @@
+
 .container{
-    height: 100%;
+    height: 2260rpx;
     position: relative;
     background-color: #eee;
 }
 .searchHeader{
     width: 100% ;
-    height: 80rpx;
+    height: 100rpx;
     position: fixed;
-    top: 9vh;
-    padding: 10rpx 30rpx;
+    top: 10vh;
+    padding: 20rpx 30rpx;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
@@ -100,8 +101,8 @@
 .searchArea{
     width: 100%;
     position: absolute;
-    top: 220rpx;
-    padding: 20rpx 30rpx;
+    top: 17vh;
+    padding: 20rpx 30rpx 0 30rpx;
     z-index: 10;
     background-color: #eee;
     box-sizing: border-box;
@@ -113,7 +114,7 @@
     padding: 20rpx 0;
 }
 .searchList{
-    height: 1750rpx;
+    height: 1700rpx;
     margin-top: 15rpx;
 }
 .searchHistory > view{

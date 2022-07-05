@@ -46,6 +46,9 @@
                 </view>
             </view>
         </view>
+
     </view>
 
 </view>
+<PlayControl style="position:sticky;bottom:0"></PlayControl>
+

@@ -2,7 +2,8 @@
   "usingComponents": {
     "NavBar": "/components/NavBar/NavBar",
     "NavHeader": "/components/NavHeader/NavHeader",
-    "SearchInput": "/components/SearchInput/SearchInput"
+    "SearchInput": "/components/SearchInput/SearchInput",
+    "PlayControl": "/components/PlayControl/PlayControl"
   },
   "navigationStyle": "custom"
 }

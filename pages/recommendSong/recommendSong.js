@@ -36,7 +36,6 @@ Page({
         })
         //订阅来自songDetail的消息
 
-
     },
     onShow() {
     },

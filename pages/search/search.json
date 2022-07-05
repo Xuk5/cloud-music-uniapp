@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "NavBar": "/components/NavBar/NavBar"
+    "NavBar": "/components/NavBar/NavBar",
+    "PlayControl": "/components/PlayControl/PlayControl"
   },
   "navigationBarTitleText": "发现更多好音乐",
   "navigationStyle": "custom"

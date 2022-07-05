@@ -14,20 +14,17 @@ Page({
     onLoad:function (options) {
         //读取用户基本信息
         let userInfo = JSON.parse(wx.getStorageSync('userInfo'))
-        if (userInfo){
-            this.setData({
-                userInfo
-            })
-            this.getUserRecentPlayRecord(userInfo.userId).then(r=>{
-
-            })
-        }
-
+            if (userInfo){
+                this.setData({
+                    userInfo
+                })
+                this.getUserRecentPlayRecord(userInfo.userId).then(r=>{
+                })
+            }
     },
     //获取用户播放记录
     async getUserRecentPlayRecord(userId){
         let recentPlayList = await request('/user/record',{uid:userId,type:0})
-        let index = 0
         recentPlayList = recentPlayList.allData.splice(0,10).map(item=>{
             item.id = item.song.id
             return item
@@ -69,7 +66,6 @@ Page({
         let {userInfo} = this.data
         if (!userInfo.length){
             Pubsub.subscribe('getUserInfo',(mas,data)=>{
-                let {userInfo} = this.data
                 userInfo = JSON.parse(wx.getStorageSync('userInfo'))
                 console.log(userInfo)
                 this.setData({
@@ -80,5 +76,31 @@ Page({
                 })
             })
         }
+        Pubsub.subscribe('getPlayList',(msg,data)=>{
+            // this.getUserPlaylist(data).then(v=>{
+            //     console.log(v)
+            // })
+            this.getUserLoginState().then(v=>{
+                if (v.code===200){
+                    console.log(111)
+                    this.getUserPlaylist(data).then(v=>{
+                        console.log(v)
+                    })
+                }
+            })
+        })
+
+    },
+    //获取用户的歌单
+    async getUserPlaylist(uid){
+        let res = await request('/user/playlist',{uid})
+        let id  = res.playlist[0].id
+        let list = await request('/playlist/detail',{id})
+        return list
+    },
+    //获取用户登录状态
+    async getUserLoginState(uid){
+        let res = await request('/login/status')
+        return res
     }
 });
