@@ -1,4 +1,6 @@
 //注册小程序应用
+import Pubsub from "pubsub-js";
+
 App({
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
@@ -6,6 +8,10 @@ App({
   onLaunch: function () {
     wx.setStorageSync('userPlayList',[])
     this.globalData.music = wx.getBackgroundAudioManager()
+    Pubsub.subscribe('setSongList',(msg,data)=>{
+
+      wx.setStorageSync('songList',data)
+    })
   },
 
   /**

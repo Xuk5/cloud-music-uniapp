@@ -1,6 +1,10 @@
 <view class="container">
     <view class="playBar" >
-        <view class="imageContainer" style="animation-play-state:{{isPlay?'running':'paused'}}">
+        <view
+                class="imageContainer"
+                style="animation-play-state:{{isPlay?'running':'paused'}}"
+                bindtap="goDetail"
+        >
             <image class="disc"
                    src="/static/images/song/disc.png"
             ></image>
@@ -10,7 +14,7 @@
             ></image>
         </view>
 
-        <view class="songInfo" bindtap="goDetail">
+        <view class="songInfo"  bindtap="goDetail">
             <text class="title">{{songInfo[0].al.name}}</text>
             <text class="singer">-{{songInfo[0].ar[0].name}}</text>
         </view>

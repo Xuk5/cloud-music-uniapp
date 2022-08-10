@@ -15,9 +15,9 @@ Page({
         currentTime: '00:00',
         totalTime: '--:--',
         currentWidth: 0,
-        songList:[],//当前播放的音乐列表
-        index:0,//当前正在播放的歌曲在列表中的索引值
-        switchList:[[],[],[]]//用于切换光盘动画的列表
+        songList: [],//当前播放的音乐列表
+        index: 0,//当前正在播放的歌曲在列表中的索引值
+        switchList: [[], [], []]//用于切换光盘动画的列表
     },
 
     onLoad: function (options) {
@@ -43,7 +43,6 @@ Page({
             this.changePlayState(false)
         })
         this.music.onTimeUpdate(() => {
-            let {songInfo} = this.data
             let currentTime = moment(this.music.currentTime * 1000).format('mm:ss')
             let currentWidth = this.music.currentTime / this.music.duration * 450
             this.setData({
@@ -51,24 +50,24 @@ Page({
                 currentWidth
             })
         })
-        this.music.onEnded(()=>{
+        this.music.onEnded(() => {
             //自然播放结束后切下一首歌
-            this.switchMusic(undefined,'next')
+            this.switchMusic(undefined, 'next')
         })
-        Pubsub.subscribe('outerPlay',(msg,data)=>{
+        Pubsub.subscribe('outerPlay', (msg, data) => {
             this.changePlayState(data)
         })
     },
     //修改播放状态的函数
     changePlayState(isPlay) {
-        setTimeout(()=>{
+        setTimeout(() => {
             this.setData({
                 isPlay
             })
-        },500)
+        }, 500)
         app.globalData.isMusicPlay = isPlay
         //通知外部播放器播放或暂停
-        Pubsub.publish('controlPlay',isPlay)
+        Pubsub.publish('controlPlay', isPlay)
         //外部播放器控制播放
 
     },
@@ -101,13 +100,13 @@ Page({
         }
     },
     //切换歌曲
-    switchMusic(e,switchType) {
+    switchMusic(e, switchType) {
         let type = switchType || e.currentTarget.dataset.type
-        let {songList,songInfo,index,switchList} = this.data
-        if (type === 'last'){//上一首歌
-            index === 0?index = songList.length-1:index-=1
-        }else {//下一首歌
-            index === songList.length-1?index=0:index+=1
+        let {songList, songInfo, index, switchList} = this.data
+        if (type === 'last') {//上一首歌
+            index === 0 ? index = songList.length - 1 : index -= 1
+        } else {//下一首歌
+            index === songList.length - 1 ? index = 0 : index += 1
         }
         this.changeSwiper(index)
         this.setData({
@@ -119,68 +118,65 @@ Page({
         })
         songInfo[0] = songList[index]
         this.getMusicUrl(songList[index].id).then(value => {
-            Pubsub.publish('getSongInfo',value.songs)
-            wx.setStorageSync('songInfo',value.songs)
+            console.log(value.data)
+            Pubsub.publish('getSongInfo', value.data)
+            wx.setStorageSync('songInfo', value.songs)
             this.setData({
-                musicUrl:value.data[0].url,
+                musicUrl: value.data[0].url,
                 songInfo,
-                isChange:false,
+                isChange: false,
             })
             this.musicPlayControl(true)
         })
 
     },
     //进度条拖动完成后
-    dragEnd(e){
-        let currentTime = (e.detail.value/450)*this.music.duration
+    dragEnd(e) {
+        let currentTime = (e.detail.value / 450) * this.music.duration
         //进度跳转
         this.music.seek(currentTime)
         this.music.play()
     },
     //进度拖动时
-    dragging(e){
+    dragging(e) {
         this.music.pause()
         //实时更新当前时间
-        let currentTime = moment((e.detail.value/450)*this.music.duration*1000).format('mm:ss')
+        let currentTime = moment((e.detail.value / 450) * this.music.duration * 1000).format('mm:ss')
         this.setData({
             currentTime
         })
     },
     //获取进入音乐详情界面前的歌单列表
-    getMusicList(id){
-        Pubsub.publish('sendSongList')
-        Pubsub.subscribe('getSongList', (msg,data) => {
-            //如果没有传songList，则获取用户自己的歌单，并将这首歌加入歌单
-            let songList = data
-            this.getMusicInfo(id).then(v => {
-                wx.setStorageSync('songInfo',v.songs)
-                Pubsub.publish('getSongInfo',v.songs)
-                this.setData({
-                    songInfo: v.songs,
-                    songList
-                })
-                return this.getMusicUrl(id)
-            }).then(v => {
-                let index = songList.findIndex(item=>{
-                    return id-0 === item.id
-                })
-                this.changeSwiper(index)
-                this.setData({
-                    index,
-                    musicUrl: v.data[0].url,
-                    isPlay: true,
-                    isChange: false
-                })
-                this.musicPlayControl(true)
+    getMusicList(id) {
+        let songList = wx.getStorageSync('songList')
+        this.getMusicInfo(id).then(v => {
+            wx.setStorageSync('songInfo', v.songs)
+            Pubsub.publish('getSongInfo', v.songs)
+            this.setData({
+                songInfo: v.songs,
+                songList
             })
+            return this.getMusicUrl(id)
+        }).then(v => {
+            let index = songList.findIndex(item => {
+                return id - 0 === item.id
+            })
+            this.changeSwiper(index)
+            this.setData({
+                index,
+                musicUrl: v.data[0].url,
+                isPlay: true,
+                isChange: false
+            })
+            this.musicPlayControl(true)
         })
     },
     //光碟
-    changeSwiper(index){
-        let {switchList,songList} = this.data
-        switchList[playMusicIndex -1 === -1?2:playMusicIndex-1] = songList[index===0?songList.length-1:index-1]
+    changeSwiper(index) {
+        let {switchList, songList} = this.data
+        switchList[playMusicIndex - 1 === -1 ? 2 : playMusicIndex - 1] = songList[index === 0 ? songList.length - 1 : index - 1]
         switchList[playMusicIndex] = songList[index]
-        switchList[playMusicIndex +1 === 3?0:playMusicIndex+1] = songList[index === songList.length-1?0:index+1]
+        switchList[playMusicIndex + 1 === 3 ? 0 : playMusicIndex + 1] = songList[index === songList.length - 1 ? 0 : index + 1]
         this.setData({
             switchList
         })

@@ -66,16 +66,13 @@ Page({
     },
     //点击歌曲跳转到歌曲详情
     goMusic({currentTarget}){
-        let {songList} = this.data
         let {id,index} = currentTarget.dataset
         this.setData({
             index:index
         })
         wx.navigateTo({
             url:'/pages/songDetail/songDetail?id='+id,
-            success:()=>{
 
-            }
         })
     }
 });

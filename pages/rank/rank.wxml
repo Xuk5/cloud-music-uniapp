@@ -32,4 +32,87 @@
         </view>
 
     </view>
+    <view class="rankList">
+        <view class="officialRank">
+            <view>官方榜</view>
+            <view class="rankDetail">
+                <view >
+                    飙升榜
+                </view>
+                <view class="songList">
+                    <image class="songImg" ></image>
+                    <view class="songInfo">
+                        <view>
+                            <text class="order">1</text>
+                            <text class="songTitle">范进中举</text>
+                            <text class="singer">-卦者灵风</text>
+                        </view>
+                        <view>
+                            <text class="order">2</text>
+                            <text class="songTitle">给你一瓶魔法药水</text>
+                            <text class="singer">-告五人告五人告五人</text>
+                        </view>
+                        <view>
+                            <text class="order">3</text>
+                            <text class="songTitle">最伟大的作品</text>
+                            <text class="singer">-周杰伦</text>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+            <view class="rankDetail">
+                <view >
+                    飙升榜
+                </view>
+                <view class="songList">
+                    <image class="songImg" ></image>
+                    <view class="songInfo">
+                        <view>
+                            <text class="order">1</text>
+                            <text class="songTitle">范进中举</text>
+                            <text class="singer">-卦者灵风</text>
+                        </view>
+                        <view>
+                            <text class="order">2</text>
+                            <text class="songTitle">给你一瓶魔法药水</text>
+                            <text class="singer">-告五人告五人告五人</text>
+                        </view>
+                        <view>
+                            <text class="order">3</text>
+                            <text class="songTitle">最伟大的作品</text>
+                            <text class="singer">-周杰伦</text>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+            <view class="rankDetail">
+                <view >
+                    飙升榜
+                </view>
+                <view class="songList">
+                    <image class="songImg" ></image>
+                    <view class="songInfo">
+                        <view>
+                            <text class="order">1</text>
+                            <text class="songTitle">范进中举</text>
+                            <text class="singer">-卦者灵风</text>
+                        </view>
+                        <view>
+                            <text class="order">2</text>
+                            <text class="songTitle">给你一瓶魔法药水</text>
+                            <text class="singer">-告五人告五人告五人</text>
+                        </view>
+                        <view>
+                            <text class="order">3</text>
+                            <text class="songTitle">最伟大的作品</text>
+                            <text class="singer">-周杰伦</text>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>

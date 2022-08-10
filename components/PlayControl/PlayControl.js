@@ -11,7 +11,6 @@ Component({
     },
     lifetimes: {
         attached: function () {
-
             this.music = wx.getBackgroundAudioManager()
             let that = this
             wx.getStorage({
@@ -25,6 +24,7 @@ Component({
             })
 
             Pubsub.subscribe('getSongInfo', (msg, data) => {
+                console.log(data)
                 this.setData({
                     songInfo: data,
                 })
@@ -40,10 +40,9 @@ Component({
             this.music.onPause(() => {
                 this.changePlayState(false)
             })
-            this.music.onTimeUpdate(() => {
-                console.log(this.music.currentTime)
-                this.handelPlayTime(this.music.currentTime)
-            })
+            // this.music.onTimeUpdate(() => {
+            //     this.handelPlayTime(this.music.currentTime)
+            // })
         },
     },
     methods: {
@@ -67,7 +66,6 @@ Component({
                 this.music.title = songInfo[0].name
                 this.getMusicUrl(songInfo[0].id).then(v => {
                     this.music.src = v.data[0].url
-                    console.log(v.data[0].url)
                 })
             } else {
                 this.music.pause()
@@ -79,20 +77,12 @@ Component({
         goDetail() {
             let {songInfo} = this.data
             wx.navigateTo({
-                url: '/pages/songDetail/songDetail?id=' + songInfo[0].id
+                url: '/pages/songDetail/songDetail?id=' + songInfo[0].id,
+                complete(res) {
+                    console.log(res)
+                }
             })
         },
-        //记录音乐播放时长
-        handelPlayTime(currentTime) {
-            let {songRecord, songInfo} = this.data
-            songRecord = {
-                id: songInfo[0].id,
-                currentTime: currentTime
-            }
-            wx.setStorageSync('songRecord', songRecord)
-            this.setData({
-                songRecord
-            })
-        }
+
     },
 });

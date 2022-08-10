@@ -70,16 +70,13 @@ Page({
 	//点击歌曲前往音乐界面
 	goDetail(e){
 		let {songid,listid} = e.currentTarget.dataset
-		Pubsub.subscribe('sendSongList',()=>{
-			this.getSongList(listid).then(v=>{
-				Pubsub.publish('getSongList',v.playlist.tracks)
-			})
+		this.getSongList(listid).then(res=>{
+			console.log(res)
+			Pubsub.publish('setSongList',res.playlist.tracks)
 		})
+
 		wx.navigateTo({
 			url:'/pages/songDetail/songDetail?id='+songid,
-			success:()=>{
-
-			}
 		})
 	},
 	//获取歌单详情
